@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+
 import "./globals.css";
 
 const roboto = Roboto({ weight: "400", subsets: ["latin"] });
@@ -15,8 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" data-theme="night">
+        <body className={roboto.className}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
